@@ -1,4 +1,5 @@
 ﻿using System;
+using FluentAssertions;
 using TechTalk.SpecFlow;
 
 namespace BankKata.AcceptanceTests
@@ -6,34 +7,52 @@ namespace BankKata.AcceptanceTests
     [Binding]
     public class SuccessfulMoneyTransferSteps
     {
+        private Account _payerAccount;
+        private Account _payeeAccount;
+
         [Given(@"a payer account with initial balance of €(.*)")]
         public void GivenAPayerAccountWithInitialBalanceOf(decimal payerInitialBalance)
         {
-            ScenarioContext.Current.Pending();
+            _payerAccount = new Account(1, payerInitialBalance);
         }
         
         [Given(@"a payee account with initial balance of €(.*)")]
         public void GivenAPayeeAccountWithInitialBalanceOf(decimal payeeInitialBalance)
         {
-            ScenarioContext.Current.Pending();
+            _payeeAccount = new Account(2, payeeInitialBalance);
         }
-        
+
         [When(@"the payer transfers €(.*) to the payee")]
         public void WhenThePayerTransfersToThePayee(decimal amountToTransfer)
         {
-            ScenarioContext.Current.Pending();
+            _payerAccount.Transfer(amountToTransfer, _payeeAccount);
         }
         
         [Then(@"the balance of payer account should be €(.*)")]
         public void ThenTheBalanceOfPayerAccountShouldBe(decimal payerBalance)
         {
-            ScenarioContext.Current.Pending();
+            _payerAccount.Balance.Should().Be(payerBalance);
         }
         
         [Then(@"the balance of the payee account should be €(.*)")]
         public void ThenTheBalanceOfThePayeeAccountShouldBe(decimal payeeBalance)
         {
-            ScenarioContext.Current.Pending();
+            _payerAccount.Balance.Should().Be(payeeBalance);
+        }
+    }
+
+    public class Account
+    {
+        public decimal Balance { get; set; }
+
+        public Account(int id, decimal initialBalance)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Transfer(decimal amount, Account toAccount)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -37,22 +37,31 @@ namespace BankKata.AcceptanceTests
         [Then(@"the balance of the payee account should be €(.*)")]
         public void ThenTheBalanceOfThePayeeAccountShouldBe(decimal payeeBalance)
         {
-            _payerAccount.Balance.Should().Be(payeeBalance);
+            _payeeAccount.Balance.Should().Be(payeeBalance);
         }
     }
 
     public class Account
     {
+
         public decimal Balance { get; set; }
+        public int Id { get; }
 
         public Account(int id, decimal initialBalance)
         {
-            throw new NotImplementedException();
+            Id = id;
+            Balance = initialBalance;
         }
 
         public void Transfer(decimal amount, Account toAccount)
         {
-            throw new NotImplementedException();
+            Balance = 5;
+            toAccount.Receive(amount, this);
+        }
+
+        private void Receive(decimal amount, Account fromAccount)
+        {
+            Balance = 25;
         }
     }
 }

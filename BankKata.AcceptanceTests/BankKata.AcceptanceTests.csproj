@@ -60,6 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Account.cs" />
+    <Compile Include="AccountDetails.cs" />
     <Compile Include="AccountSteps.cs" />
     <Compile Include="MoneyTransfer.feature.cs">
       <AutoGen>True</AutoGen>
@@ -67,6 +68,7 @@
       <DependentUpon>MoneyTransfer.feature</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TransactionDetails.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

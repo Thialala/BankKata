@@ -1,7 +1,5 @@
 ﻿Feature: Successful money transfer
 
-Background:
-
 Scenario Outline: Successful money transfer from a payer account to a payee account
 	Given a payer account with initial balance of €<payeeInitialBalance>
 	And a payee account with initial balance of €<payerInitialBalance>
@@ -16,13 +14,6 @@ Scenario Outline: Successful money transfer from a payer account to a payee acco
     | 250.00              | 100.00              | 150.00           | 100.00       | 250.00       |
 
 Scenario:  Keep a record of the transfer for both bank accounts in a transaction history
-    Given a payer account with initial balance of €100.00
-	And a payee account with initial balance of €100.0
-	When the payer transfers €50.00 to the payee
-	Then the payer account should have a transaction record with amount €-50
-	And the payee account should have a transaction record with amount €50
-
-Scenario:  Keep a record of the transfer with all transaction details
     Given the transfer date is 17/09/2018
 	And a payer account with following details:
 	| Id | InitialBalance |

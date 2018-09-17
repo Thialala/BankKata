@@ -42,18 +42,6 @@ namespace BankKata.AcceptanceTests
             _payeeAccount.Balance.Should().Be(payeeBalance);
         }
 
-        [Then(@"the payer account should have a transaction record with amount €(.*)")]
-        public void ThenThePayerAccountShouldHaveATransactionWithAmount(decimal amount)
-        {
-            _payerAccount.Transactions.Should().Contain(new Transaction(amount, _transfertDate, _payerAccount.Id, _payeeAccount.Id));
-        }
-
-        [Then(@"the payee account should have a transaction record with amount €(.*)")]
-        public void ThenThePayeeAccountShouldHaveATransactionRecordWithAmount(decimal amount)
-        {
-            _payeeAccount.Transactions.Should().Contain(new Transaction(amount, _transfertDate, _payerAccount.Id, _payeeAccount.Id));
-        }
-
         [Given(@"the transfer date is (.*)")]
         public void GivenTheTransferDateIs(DateTime transferDate)
         {
@@ -97,19 +85,5 @@ namespace BankKata.AcceptanceTests
 
             _payeeAccount.Transactions.Should().Contain(expectedTransaction);
         }
-    }
-
-    internal class TransactionDetails
-    {
-        public decimal Amount { get; set; }
-        public DateTime Date { get; set; }
-        public int FromAccountId { get; set; }
-        public int ToAccountId { get; set; }
-    }
-
-    internal class AccountDetails
-    {
-        public int Id { get; set; }
-        public decimal InitialBalance { get; set; }
     }
 }

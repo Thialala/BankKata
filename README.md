@@ -1,4 +1,5 @@
 # The Bank Account Kata description
+[![Build status](https://obarry.visualstudio.com/BankKata/_apis/build/status/BankKata-CI)](https://obarry.visualstudio.com/BankKata/_build/latest?definitionId=15)
 
 1. Write some code to transfer a specified amount of money from one bank account (the payer) to another (the payee)
 

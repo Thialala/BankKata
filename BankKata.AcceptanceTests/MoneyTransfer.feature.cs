@@ -209,7 +209,7 @@ this.ScenarioInitialize(scenarioInfo);
                         "1",
                         "2"});
 #line 45
- testRunner.And("querying transaction history on payee account for account number 2 should return " +
+ testRunner.And("querying transaction history on payer account for account number 2 should return " +
                     "the following transaction", ((string)(null)), table8, "And ");
 #line hidden
             TechTalk.SpecFlow.Table table9 = new TechTalk.SpecFlow.Table(new string[] {
@@ -223,7 +223,7 @@ this.ScenarioInitialize(scenarioInfo);
                         "1",
                         "3"});
 #line 48
- testRunner.And("querying transaction history on payee account for account number 3 should return " +
+ testRunner.And("querying transaction history on payer account for account number 3 should return " +
                     "the following transaction", ((string)(null)), table9, "And ");
 #line hidden
             this.ScenarioCleanup();

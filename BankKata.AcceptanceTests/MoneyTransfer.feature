@@ -42,12 +42,12 @@ Scenario: Query a bank account's transaction history for any bank transfers to o
 	| 3  | 50.00          |
 	When the payer transfers €70.00 to the payee
 	And the payer transfers €30.00 to the third account
-	And querying transaction history on payee account for account number 2 should return the following transaction
+	And querying transaction history on payer account for account number 2 should return the following transaction
 	| amount | date       | fromAccountId | toAccountId |
-	| -70.00  | 17/09/2018 | 1             | 2           |
-	And querying transaction history on payee account for account number 3 should return the following transaction
+	| -70.00 | 17/09/2018 | 1             | 2           |
+	And querying transaction history on payer account for account number 3 should return the following transaction
 	| amount | date       | fromAccountId | toAccountId |
-	| -30.00  | 17/09/2018 | 1             | 3           |
+	| -30.00 | 17/09/2018 | 1             | 3           |
 
 
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BankKata.AcceptanceTests
 {
@@ -32,6 +33,11 @@ namespace BankKata.AcceptanceTests
         {
             Balance += amount;
             _transactions.Add(new Transaction(amount, _dateProvider(), fromAccount.Id, Id));
+        }
+
+        public IEnumerable<Transaction> GetTransactionHistoryFromOrTo(int accountNumber)
+        {
+            return _transactions.Where(t => t.IsFromOrTo(accountNumber));
         }
     }
 
@@ -67,6 +73,11 @@ namespace BankKata.AcceptanceTests
             hashCode = hashCode * -1521134295 + _fromAccountId.GetHashCode();
             hashCode = hashCode * -1521134295 + _toAccountId.GetHashCode();
             return hashCode;
+        }
+
+        public bool IsFromOrTo(int accountNumber)
+        {
+            return _fromAccountId == accountNumber || _toAccountId == accountNumber;
         }
     }
 }

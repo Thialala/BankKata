@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using BankKata.AcceptanceTests.Support;
 using FluentAssertions;
 using TechTalk.SpecFlow;
@@ -81,19 +82,21 @@ namespace BankKata.AcceptanceTests
         [Given(@"a third account with following details:")]
         public void GivenAThirdAccountWithFollowingDetails(Table table)
         {
-            ScenarioContext.Current.Pending();
+            _thirdAccount = BuildAccount(table.CreateInstance<AccountDetails>());
         }
 
         [When(@"the payer transfers €(.*) to the third account")]
         public void WhenThePayerTransfersToTheThirdAccount(decimal amount)
         {
-            ScenarioContext.Current.Pending();
+            _payerAccount.Transfer(amount, _thirdAccount);
         }
 
-        [When(@"querying transaction history on payee account for account number (.*) should return the following transaction")]
+        [When(@"querying transaction history on payer account for account number (.*) should return the following transaction")]
         public void WhenQueryingTransactionHistoryOnPayeeAccountForAccountNumberShouldReturnTheFollowingTransaction(int accountNumber, Table table)
         {
-            ScenarioContext.Current.Pending();
+            var actualTransactions = _payerAccount.GetTransactionHistoryFromOrTo(accountNumber);
+            var expectedTransactions = new List<Transaction> { BuildExpectedTransaction(table.CreateInstance<TransactionDetails>()) };
+            actualTransactions.Should().BeEquivalentTo(expectedTransactions);
         }
 
 

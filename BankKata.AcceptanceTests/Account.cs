@@ -2,9 +2,9 @@
 {
     public class Account
     {
-
-        public decimal Balance { get; set; }
         public int Id { get; }
+
+        public decimal Balance { get; private set; }
 
         public Account(int id, decimal initialBalance)
         {

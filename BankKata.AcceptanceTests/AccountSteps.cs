@@ -1,5 +1,7 @@
-﻿using FluentAssertions;
+﻿using System;
+using FluentAssertions;
 using TechTalk.SpecFlow;
+using TechTalk.SpecFlow.Assist;
 
 namespace BankKata.AcceptanceTests
 {
@@ -8,17 +10,18 @@ namespace BankKata.AcceptanceTests
     {
         private Account _payerAccount;
         private Account _payeeAccount;
+        private DateTime _transfertDate = DateTime.Today;
 
         [Given(@"a payer account with initial balance of €(.*)")]
         public void GivenAPayerAccountWithInitialBalanceOf(decimal payerInitialBalance)
         {
-            _payerAccount = new Account(1, payerInitialBalance);
+            _payerAccount = new Account(1, payerInitialBalance, () => _transfertDate);
         }
 
         [Given(@"a payee account with initial balance of €(.*)")]
         public void GivenAPayeeAccountWithInitialBalanceOf(decimal payeeInitialBalance)
         {
-            _payeeAccount = new Account(2, payeeInitialBalance);
+            _payeeAccount = new Account(2, payeeInitialBalance, () => _transfertDate);
         }
 
         [When(@"the payer transfers €(.*) to the payee")]
@@ -39,16 +42,74 @@ namespace BankKata.AcceptanceTests
             _payeeAccount.Balance.Should().Be(payeeBalance);
         }
 
-        [Then(@"the payer account should have a transaction with amount €(.*)")]
+        [Then(@"the payer account should have a transaction record with amount €(.*)")]
         public void ThenThePayerAccountShouldHaveATransactionWithAmount(decimal amount)
         {
-            _payerAccount.Transactions.Should().Contain(new Transaction(amount));
+            _payerAccount.Transactions.Should().Contain(new Transaction(amount, _transfertDate, _payerAccount.Id, _payeeAccount.Id));
         }
 
         [Then(@"the payee account should have a transaction record with amount €(.*)")]
         public void ThenThePayeeAccountShouldHaveATransactionRecordWithAmount(decimal amount)
         {
-            _payeeAccount.Transactions.Should().Contain(new Transaction(amount));
+            _payeeAccount.Transactions.Should().Contain(new Transaction(amount, _transfertDate, _payerAccount.Id, _payeeAccount.Id));
         }
+
+        [Given(@"the transfer date is (.*)")]
+        public void GivenTheTransferDateIs(DateTime transferDate)
+        {
+            _transfertDate = transferDate;
+        }
+
+        [Given(@"a payer account with following details:")]
+        public void GivenAPayerAccountWithFollowingDetails(Table table)
+        {
+            var accountDetails = table.CreateInstance<AccountDetails>();
+            _payerAccount = new Account(accountDetails.Id, accountDetails.InitialBalance);
+        }
+
+        [Given(@"a payee account with following details:")]
+        public void GivenAPayeeAccountWithFollowingDetails(Table table)
+        {
+            var accountDetails = table.CreateInstance<AccountDetails>();
+            _payeeAccount = new Account(accountDetails.Id, accountDetails.InitialBalance); ;
+        }
+
+        [Then(@"the payer account should have a transaction with following details")]
+        public void ThenThePayerAccountShouldHaveATransactionWithFollowingDetails(Table table)
+        {
+            var transactionsDetails = table.CreateInstance<TransactionDetails>();
+            var expectedTransaction = new Transaction(transactionsDetails.Amount,
+                transactionsDetails.Date,
+                transactionsDetails.FromAccountId,
+                transactionsDetails.ToAccountId);
+
+            _payerAccount.Transactions.Should().Contain(expectedTransaction);
+        }
+
+        [Then(@"the payee should have a transaction with following details")]
+        public void ThenThePayeeShouldHaveATransactionWithFollowingDetails(Table table)
+        {
+            var transactionsDetails = table.CreateInstance<TransactionDetails>();
+            var expectedTransaction = new Transaction(transactionsDetails.Amount,
+                transactionsDetails.Date,
+                transactionsDetails.FromAccountId,
+                transactionsDetails.ToAccountId);
+
+            _payeeAccount.Transactions.Should().Contain(expectedTransaction);
+        }
+    }
+
+    internal class TransactionDetails
+    {
+        public decimal Amount { get; set; }
+        public DateTime Date { get; set; }
+        public int FromAccountId { get; set; }
+        public int ToAccountId { get; set; }
+    }
+
+    internal class AccountDetails
+    {
+        public int Id { get; set; }
+        public decimal InitialBalance { get; set; }
     }
 }

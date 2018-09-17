@@ -93,6 +93,28 @@ this.ScenarioInitialize(scenarioInfo);
 #line hidden
             this.ScenarioCleanup();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Keep a record of the transfer for both bank accounts in a transaction history")]
+        public virtual void KeepARecordOfTheTransferForBothBankAccountsInATransactionHistory()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Keep a record of the transfer for both bank accounts in a transaction history", null, ((string[])(null)));
+#line 16
+this.ScenarioInitialize(scenarioInfo);
+            this.ScenarioStart();
+#line 17
+    testRunner.Given("a payer account with initial balance of €100.00", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 18
+ testRunner.And("a payee account with initial balance of €100.0", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 19
+ testRunner.When("the payer transfers €50.00 to the payee", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 20
+ testRunner.Then("the payer account should have a transaction with amount €-50.00", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 21
+ testRunner.And("the payee account should have a transaction record with amount €50.00", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore

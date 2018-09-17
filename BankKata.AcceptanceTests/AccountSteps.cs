@@ -38,5 +38,18 @@ namespace BankKata.AcceptanceTests
         {
             _payeeAccount.Balance.Should().Be(payeeBalance);
         }
+
+        [Then(@"the payer account should have a transaction with amount €(.*)")]
+        public void ThenThePayerAccountShouldHaveATransactionWithAmount(decimal amount)
+        {
+            _payeeAccount.Transactions.Should().Contain(new Transaction(amount));
+        }
+
+        [Then(@"the payee account should have a transaction record with amount €(.*)")]
+        public void ThenThePayeeAccountShouldHaveATransactionRecordWithAmount(decimal amount)
+        {
+            _payerAccount.Transactions.Should().Contain(new Transaction(amount));
+        }
+
     }
 }

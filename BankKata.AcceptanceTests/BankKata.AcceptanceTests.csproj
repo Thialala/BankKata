@@ -59,6 +59,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Account.cs" />
     <Compile Include="AccountSteps.cs" />
     <Compile Include="MoneyTransfer.feature.cs">
       <AutoGen>True</AutoGen>

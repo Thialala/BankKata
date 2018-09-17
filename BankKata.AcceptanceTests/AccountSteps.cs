@@ -1,5 +1,4 @@
-﻿using System;
-using FluentAssertions;
+﻿using FluentAssertions;
 using TechTalk.SpecFlow;
 
 namespace BankKata.AcceptanceTests
@@ -15,7 +14,7 @@ namespace BankKata.AcceptanceTests
         {
             _payerAccount = new Account(1, payerInitialBalance);
         }
-        
+
         [Given(@"a payee account with initial balance of €(.*)")]
         public void GivenAPayeeAccountWithInitialBalanceOf(decimal payeeInitialBalance)
         {
@@ -27,41 +26,17 @@ namespace BankKata.AcceptanceTests
         {
             _payerAccount.Transfer(amountToTransfer, _payeeAccount);
         }
-        
+
         [Then(@"the balance of payer account should be €(.*)")]
         public void ThenTheBalanceOfPayerAccountShouldBe(decimal payerBalance)
         {
             _payerAccount.Balance.Should().Be(payerBalance);
         }
-        
+
         [Then(@"the balance of the payee account should be €(.*)")]
         public void ThenTheBalanceOfThePayeeAccountShouldBe(decimal payeeBalance)
         {
             _payeeAccount.Balance.Should().Be(payeeBalance);
-        }
-    }
-
-    public class Account
-    {
-
-        public decimal Balance { get; set; }
-        public int Id { get; }
-
-        public Account(int id, decimal initialBalance)
-        {
-            Id = id;
-            Balance = initialBalance;
-        }
-
-        public void Transfer(decimal amount, Account toAccount)
-        {
-            Balance = 5;
-            toAccount.Receive(amount, this);
-        }
-
-        private void Receive(decimal amount, Account fromAccount)
-        {
-            Balance = 25;
         }
     }
 }

@@ -83,13 +83,13 @@ this.ScenarioInitialize(scenarioInfo);
 #line 4
  testRunner.Given(string.Format("a payer account with initial balance of €{0}", payeeInitialBalance), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 5
- testRunner.And(string.Format("a payee account with initial balance of €{0}", payerInitialBalance), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And(string.Format("a payee account with initial balance of €{0}", payerInitialBalance), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 6
  testRunner.When(string.Format("the payer transfers €{0} to the payee", amountToTransfer), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 7
  testRunner.Then(string.Format("the balance of payer account should be €{0}", payerBalance), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 8
- testRunner.And(string.Format("the balance of the payee account should be €{0}", payeeBalance), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And(string.Format("the balance of the payee account should be €{0}", payeeBalance), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -112,7 +112,7 @@ this.ScenarioInitialize(scenarioInfo);
                         "1",
                         "100.00"});
 #line 18
- testRunner.And("a payer account with following details:", ((string)(null)), table1, "And ");
+  testRunner.And("a payer account with following details:", ((string)(null)), table1, "And ");
 #line hidden
             TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
                         "Id",
@@ -121,7 +121,7 @@ this.ScenarioInitialize(scenarioInfo);
                         "2",
                         "100.00"});
 #line 21
- testRunner.And("a payee account with following details:", ((string)(null)), table2, "And ");
+  testRunner.And("a payee account with following details:", ((string)(null)), table2, "And ");
 #line 24
  testRunner.When("the payer transfers €50.00 to the payee", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
@@ -149,7 +149,7 @@ this.ScenarioInitialize(scenarioInfo);
                         "1",
                         "2"});
 #line 28
- testRunner.And("the payee should have a transaction with following details", ((string)(null)), table4, "And ");
+  testRunner.And("the payee should have a transaction with following details", ((string)(null)), table4, "And ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -174,7 +174,7 @@ this.ScenarioInitialize(scenarioInfo);
                         "1",
                         "100.00"});
 #line 34
- testRunner.And("a payer account with following details:", ((string)(null)), table5, "And ");
+  testRunner.And("a payer account with following details:", ((string)(null)), table5, "And ");
 #line hidden
             TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
                         "Id",
@@ -183,7 +183,7 @@ this.ScenarioInitialize(scenarioInfo);
                         "2",
                         "100.00"});
 #line 37
- testRunner.And("a payee account with following details:", ((string)(null)), table6, "And ");
+  testRunner.And("a payee account with following details:", ((string)(null)), table6, "And ");
 #line hidden
             TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
                         "Id",
@@ -192,11 +192,11 @@ this.ScenarioInitialize(scenarioInfo);
                         "3",
                         "50.00"});
 #line 40
- testRunner.And("a third account with following details:", ((string)(null)), table7, "And ");
+  testRunner.And("a third account with following details:", ((string)(null)), table7, "And ");
 #line 43
  testRunner.When("the payer transfers €70.00 to the payee", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 44
- testRunner.And("the payer transfers €30.00 to the third account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("the payer transfers €30.00 to the third account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             TechTalk.SpecFlow.Table table8 = new TechTalk.SpecFlow.Table(new string[] {
                         "amount",
@@ -209,8 +209,8 @@ this.ScenarioInitialize(scenarioInfo);
                         "1",
                         "2"});
 #line 45
- testRunner.And("querying transaction history on payer account for account number 2 should return " +
-                    "the following transaction", ((string)(null)), table8, "And ");
+ testRunner.Then("querying transaction history on payer account for account number 2 should return " +
+                    "the following transaction", ((string)(null)), table8, "Then ");
 #line hidden
             TechTalk.SpecFlow.Table table9 = new TechTalk.SpecFlow.Table(new string[] {
                         "amount",
@@ -223,7 +223,7 @@ this.ScenarioInitialize(scenarioInfo);
                         "1",
                         "3"});
 #line 48
- testRunner.And("querying transaction history on payer account for account number 3 should return " +
+  testRunner.And("querying transaction history on payer account for account number 3 should return " +
                     "the following transaction", ((string)(null)), table9, "And ");
 #line hidden
             this.ScenarioCleanup();

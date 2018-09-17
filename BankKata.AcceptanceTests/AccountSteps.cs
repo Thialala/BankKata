@@ -91,7 +91,7 @@ namespace BankKata.AcceptanceTests
             _payerAccount.Transfer(amount, _thirdAccount);
         }
 
-        [When(@"querying transaction history on payer account for account number (.*) should return the following transaction")]
+        [Then(@"querying transaction history on payer account for account number (.*) should return the following transaction")]
         public void WhenQueryingTransactionHistoryOnPayeeAccountForAccountNumberShouldReturnTheFollowingTransaction(int accountNumber, Table table)
         {
             var actualTransactions = _payerAccount.GetTransactionHistoryFromOrTo(accountNumber);

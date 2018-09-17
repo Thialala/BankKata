@@ -28,3 +28,27 @@ Scenario:  Keep a record of the transfer for both bank accounts in a transaction
 	And the payee should have a transaction with following details
 	| amount | date       | fromAccountId | toAccountId |
 	| 50.00  | 17/09/2018 | 1             | 2           |
+
+Scenario: Query a bank account's transaction history for any bank transfers to or from a specific account
+    Given the transfer date is 17/09/2018
+	And a payer account with following details:
+	| Id | InitialBalance |
+	| 1  | 100.00         |
+	And a payee account with following details:
+	| Id | InitialBalance |
+	| 2  | 100.00         |
+	And a third account with following details:
+	| Id | InitialBalance |
+	| 3  | 50.00          |
+	When the payer transfers €70.00 to the payee
+	And the payer transfers €30.00 to the third account
+	And querying transaction history on payee account for account number 2 should return the following transaction
+	| amount | date       | fromAccountId | toAccountId |
+	| -70.00  | 17/09/2018 | 1             | 2           |
+	And querying transaction history on payee account for account number 3 should return the following transaction
+	| amount | date       | fromAccountId | toAccountId |
+	| -30.00  | 17/09/2018 | 1             | 3           |
+
+
+
+

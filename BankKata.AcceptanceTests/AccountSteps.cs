@@ -11,6 +11,7 @@ namespace BankKata.AcceptanceTests
     {
         private Account _payerAccount;
         private Account _payeeAccount;
+        private Account _thirdAccount;
         private DateTime _transfertDate = DateTime.Today;
 
         [Given(@"a payer account with initial balance of €(.*)")]
@@ -76,6 +77,25 @@ namespace BankKata.AcceptanceTests
             var expectedTransaction = BuildExpectedTransaction(table.CreateInstance<TransactionDetails>());
             _payeeAccount.Transactions.Should().Contain(expectedTransaction);
         }
+
+        [Given(@"a third account with following details:")]
+        public void GivenAThirdAccountWithFollowingDetails(Table table)
+        {
+            ScenarioContext.Current.Pending();
+        }
+
+        [When(@"the payer transfers €(.*) to the third account")]
+        public void WhenThePayerTransfersToTheThirdAccount(decimal amount)
+        {
+            ScenarioContext.Current.Pending();
+        }
+
+        [When(@"querying transaction history on payee account for account number (.*) should return the following transaction")]
+        public void WhenQueryingTransactionHistoryOnPayeeAccountForAccountNumberShouldReturnTheFollowingTransaction(int accountNumber, Table table)
+        {
+            ScenarioContext.Current.Pending();
+        }
+
 
         private Account BuildAccount(AccountDetails accountDetails)
         {

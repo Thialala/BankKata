@@ -153,6 +153,81 @@ this.ScenarioInitialize(scenarioInfo);
 #line hidden
             this.ScenarioCleanup();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Query a bank account\'s transaction history for any bank transfers to or from a sp" +
+            "ecific account")]
+        public virtual void QueryABankAccountsTransactionHistoryForAnyBankTransfersToOrFromASpecificAccount()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Query a bank account\'s transaction history for any bank transfers to or from a sp" +
+                    "ecific account", null, ((string[])(null)));
+#line 32
+this.ScenarioInitialize(scenarioInfo);
+            this.ScenarioStart();
+#line 33
+    testRunner.Given("the transfer date is 17/09/2018", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+            TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Id",
+                        "InitialBalance"});
+            table5.AddRow(new string[] {
+                        "1",
+                        "100.00"});
+#line 34
+ testRunner.And("a payer account with following details:", ((string)(null)), table5, "And ");
+#line hidden
+            TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Id",
+                        "InitialBalance"});
+            table6.AddRow(new string[] {
+                        "2",
+                        "100.00"});
+#line 37
+ testRunner.And("a payee account with following details:", ((string)(null)), table6, "And ");
+#line hidden
+            TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Id",
+                        "InitialBalance"});
+            table7.AddRow(new string[] {
+                        "3",
+                        "50.00"});
+#line 40
+ testRunner.And("a third account with following details:", ((string)(null)), table7, "And ");
+#line 43
+ testRunner.When("the payer transfers €70.00 to the payee", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 44
+ testRunner.And("the payer transfers €30.00 to the third account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            TechTalk.SpecFlow.Table table8 = new TechTalk.SpecFlow.Table(new string[] {
+                        "amount",
+                        "date",
+                        "fromAccountId",
+                        "toAccountId"});
+            table8.AddRow(new string[] {
+                        "-70.00",
+                        "17/09/2018",
+                        "1",
+                        "2"});
+#line 45
+ testRunner.And("querying transaction history on payee account for account number 2 should return " +
+                    "the following transaction", ((string)(null)), table8, "And ");
+#line hidden
+            TechTalk.SpecFlow.Table table9 = new TechTalk.SpecFlow.Table(new string[] {
+                        "amount",
+                        "date",
+                        "fromAccountId",
+                        "toAccountId"});
+            table9.AddRow(new string[] {
+                        "-30.00",
+                        "17/09/2018",
+                        "1",
+                        "3"});
+#line 48
+ testRunner.And("querying transaction history on payee account for account number 3 should return " +
+                    "the following transaction", ((string)(null)), table9, "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore

@@ -8,7 +8,7 @@ namespace BankKata.AcceptanceTests
 
         public decimal Balance { get; private set; }
 
-        public IList<Transaction> Transactions { get; set; }
+        public IList<Transaction> Transactions { get; set; } = new List<Transaction>();
 
         public Account(int id, decimal initialBalance)
         {
@@ -20,11 +20,13 @@ namespace BankKata.AcceptanceTests
         {
             Balance -= amount;
             toAccount.Receive(amount, this);
+            Transactions.Add(new Transaction(-50));
         }
 
         private void Receive(decimal amount, Account fromAccount)
         {
             Balance += amount;
+            Transactions.Add(new Transaction(50));
         }
     }
 
@@ -35,6 +37,18 @@ namespace BankKata.AcceptanceTests
         public Transaction(decimal amount)
         {
             this.amount = amount;
+        }
+
+        public override bool Equals(object obj)
+        {
+            var transaction = obj as Transaction;
+            return transaction != null &&
+                   amount == transaction.amount;
+        }
+
+        public override int GetHashCode()
+        {
+            return -1658239311 + amount.GetHashCode();
         }
     }
 }

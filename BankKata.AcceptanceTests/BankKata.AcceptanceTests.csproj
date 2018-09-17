@@ -59,7 +59,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Account.cs" />
     <Compile Include="Support\AccountDetails.cs" />
     <Compile Include="AccountSteps.cs" />
     <Compile Include="MoneyTransfer.feature.cs">
@@ -77,6 +76,12 @@
       <LastGenOutput>MoneyTransfer.feature.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BankKata\BankKata.csproj">
+      <Project>{7b4b3c0a-901b-4ebc-951a-f391d08dab75}</Project>
+      <Name>BankKata</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\SpecFlow.2.4.0\build\SpecFlow.targets" Condition="Exists('..\packages\SpecFlow.2.4.0\build\SpecFlow.targets')" />

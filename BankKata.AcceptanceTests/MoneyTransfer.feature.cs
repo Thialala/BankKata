@@ -71,9 +71,9 @@ namespace BankKata.AcceptanceTests
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Successful money transfer from a payer account to a payee account")]
-        [NUnit.Framework.TestCaseAttribute("10.00", "20.00", "5.00", "5.00", "25.00", null)]
-        [NUnit.Framework.TestCaseAttribute("100.00", "50.00", "50.00", "50.00", "100.00", null)]
-        [NUnit.Framework.TestCaseAttribute("250.00", "100.00", "150.00", "100.00", "250.00", null)]
+        [NUnit.Framework.TestCaseAttribute("10,00", "20,00", "5,00", "5,00", "25,00", null)]
+        [NUnit.Framework.TestCaseAttribute("100,00", "50,00", "50,00", "50,00", "100,00", null)]
+        [NUnit.Framework.TestCaseAttribute("250,00", "100,00", "150,00", "100,00", "250,00", null)]
         public virtual void SuccessfulMoneyTransferFromAPayerAccountToAPayeeAccount(string payeeInitialBalance, string payerInitialBalance, string amountToTransfer, string payerBalance, string payeeBalance, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Successful money transfer from a payer account to a payee account", null, exampleTags);
@@ -110,7 +110,7 @@ this.ScenarioInitialize(scenarioInfo);
                         "InitialBalance"});
             table1.AddRow(new string[] {
                         "1",
-                        "100.00"});
+                        "100,00"});
 #line 18
   testRunner.And("a payer account with following details:", ((string)(null)), table1, "And ");
 #line hidden
@@ -119,11 +119,11 @@ this.ScenarioInitialize(scenarioInfo);
                         "InitialBalance"});
             table2.AddRow(new string[] {
                         "2",
-                        "100.00"});
+                        "100,00"});
 #line 21
   testRunner.And("a payee account with following details:", ((string)(null)), table2, "And ");
 #line 24
- testRunner.When("the payer transfers €50.00 to the payee", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("the payer transfers €50,00 to the payee", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
             TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
                         "amount",
@@ -131,7 +131,7 @@ this.ScenarioInitialize(scenarioInfo);
                         "fromAccountId",
                         "toAccountId"});
             table3.AddRow(new string[] {
-                        "-50.00",
+                        "-50,00",
                         "17/09/2018",
                         "1",
                         "2"});
@@ -144,7 +144,7 @@ this.ScenarioInitialize(scenarioInfo);
                         "fromAccountId",
                         "toAccountId"});
             table4.AddRow(new string[] {
-                        "50.00",
+                        "50,00",
                         "17/09/2018",
                         "1",
                         "2"});
@@ -172,7 +172,7 @@ this.ScenarioInitialize(scenarioInfo);
                         "InitialBalance"});
             table5.AddRow(new string[] {
                         "1",
-                        "100.00"});
+                        "100,00"});
 #line 34
   testRunner.And("a payer account with following details:", ((string)(null)), table5, "And ");
 #line hidden
@@ -181,7 +181,7 @@ this.ScenarioInitialize(scenarioInfo);
                         "InitialBalance"});
             table6.AddRow(new string[] {
                         "2",
-                        "100.00"});
+                        "100,00"});
 #line 37
   testRunner.And("a payee account with following details:", ((string)(null)), table6, "And ");
 #line hidden
@@ -190,13 +190,13 @@ this.ScenarioInitialize(scenarioInfo);
                         "InitialBalance"});
             table7.AddRow(new string[] {
                         "3",
-                        "50.00"});
+                        "50,00"});
 #line 40
   testRunner.And("a third account with following details:", ((string)(null)), table7, "And ");
 #line 43
- testRunner.When("the payer transfers €70.00 to the payee", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("the payer transfers €70,00 to the payee", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 44
-  testRunner.And("the payer transfers €30.00 to the third account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("the payer transfers €30,00 to the third account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             TechTalk.SpecFlow.Table table8 = new TechTalk.SpecFlow.Table(new string[] {
                         "amount",
@@ -204,7 +204,7 @@ this.ScenarioInitialize(scenarioInfo);
                         "fromAccountId",
                         "toAccountId"});
             table8.AddRow(new string[] {
-                        "-70.00",
+                        "-70,00",
                         "17/09/2018",
                         "1",
                         "2"});
@@ -218,7 +218,7 @@ this.ScenarioInitialize(scenarioInfo);
                         "fromAccountId",
                         "toAccountId"});
             table9.AddRow(new string[] {
-                        "-30.00",
+                        "-30,00",
                         "17/09/2018",
                         "1",
                         "3"});

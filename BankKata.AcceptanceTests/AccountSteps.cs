@@ -16,13 +16,13 @@ namespace BankKata.AcceptanceTests
         [Given(@"a payer account with initial balance of €(.*)")]
         public void GivenAPayerAccountWithInitialBalanceOf(decimal payerInitialBalance)
         {
-            _payerAccount = new Account(1, payerInitialBalance, () => _transfertDate);
+            _payerAccount = BuildAccount(new AccountDetails { Id = 1, InitialBalance = payerInitialBalance });
         }
 
         [Given(@"a payee account with initial balance of €(.*)")]
         public void GivenAPayeeAccountWithInitialBalanceOf(decimal payeeInitialBalance)
         {
-            _payeeAccount = new Account(2, payeeInitialBalance, () => _transfertDate);
+            _payeeAccount = BuildAccount(new AccountDetails { Id = 2, InitialBalance = payeeInitialBalance });
         }
 
         [When(@"the payer transfers €(.*) to the payee")]
@@ -53,38 +53,41 @@ namespace BankKata.AcceptanceTests
         public void GivenAPayerAccountWithFollowingDetails(Table table)
         {
             var accountDetails = table.CreateInstance<AccountDetails>();
-            _payerAccount = new Account(accountDetails.Id, accountDetails.InitialBalance);
+            _payerAccount = BuildAccount(accountDetails);
         }
 
         [Given(@"a payee account with following details:")]
         public void GivenAPayeeAccountWithFollowingDetails(Table table)
         {
             var accountDetails = table.CreateInstance<AccountDetails>();
-            _payeeAccount = new Account(accountDetails.Id, accountDetails.InitialBalance); ;
+            _payeeAccount = BuildAccount(accountDetails);
         }
 
         [Then(@"the payer account should have a transaction with following details")]
         public void ThenThePayerAccountShouldHaveATransactionWithFollowingDetails(Table table)
         {
-            var transactionsDetails = table.CreateInstance<TransactionDetails>();
-            var expectedTransaction = new Transaction(transactionsDetails.Amount,
-                transactionsDetails.Date,
-                transactionsDetails.FromAccountId,
-                transactionsDetails.ToAccountId);
-
+            var expectedTransaction = BuildExpectedTransaction(table.CreateInstance<TransactionDetails>());
             _payerAccount.Transactions.Should().Contain(expectedTransaction);
         }
 
         [Then(@"the payee should have a transaction with following details")]
         public void ThenThePayeeShouldHaveATransactionWithFollowingDetails(Table table)
         {
-            var transactionsDetails = table.CreateInstance<TransactionDetails>();
-            var expectedTransaction = new Transaction(transactionsDetails.Amount,
+            var expectedTransaction = BuildExpectedTransaction(table.CreateInstance<TransactionDetails>());
+            _payeeAccount.Transactions.Should().Contain(expectedTransaction);
+        }
+
+        private Account BuildAccount(AccountDetails accountDetails)
+        {
+            return new Account(accountDetails.Id, accountDetails.InitialBalance, () => _transfertDate);
+        }
+
+        private static Transaction BuildExpectedTransaction(TransactionDetails transactionsDetails)
+        {
+            return new Transaction(transactionsDetails.Amount,
                 transactionsDetails.Date,
                 transactionsDetails.FromAccountId,
                 transactionsDetails.ToAccountId);
-
-            _payeeAccount.Transactions.Should().Contain(expectedTransaction);
         }
     }
 }

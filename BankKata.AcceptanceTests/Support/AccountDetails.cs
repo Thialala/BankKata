@@ -1,4 +1,4 @@
-﻿namespace BankKata.AcceptanceTests
+﻿namespace BankKata.AcceptanceTests.Support
 {
     internal class AccountDetails
     {

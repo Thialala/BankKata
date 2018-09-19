@@ -77,6 +77,7 @@
       <LastGenOutput>MoneyTransfer.feature.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
+    <None Include="tests.runsettings" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BankKata\BankKata.csproj">
